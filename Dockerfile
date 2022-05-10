@@ -1,4 +1,5 @@
-FROM nvcr.io/nvidia/tritonserver:21.12-py3
+# See Dockerfile.compose for building this base image
+FROM tritonserver-custom
 
 # Format models for Triton Server
 COPY server/model_repository /models
