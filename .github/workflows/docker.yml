@@ -46,7 +46,7 @@ jobs:
         shell: bash
         run: |
           mkdir server/plugins  # Missing in CI
-          docker build -t tritonserver:TRITON_CONTAINER_VERSION -f Dockerfile .
+          docker build -t tritonserver:$TRITON_CONTAINER_VERSION -f Dockerfile .
 
       - name: List images
         run: docker images
