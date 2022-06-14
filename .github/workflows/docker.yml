@@ -21,6 +21,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Verify Dockerfile.compose changes are committed
+        run: |
+          set -ex
+          git diff --exit-code Dockerfile.compose || (echo Commit the above changes && exit 1)
+
       - name: Fetch triton-inference-server
         run: git clone --depth 1 https://github.com/triton-inference-server/server triton-inference-server
 
@@ -33,7 +38,9 @@ jobs:
             --backend tensorrt
 
       - name: Compare repository Dockerfile.compose with generated version
-        run: git diff --exit-code
+        run: |
+          set -ex
+          git diff --exit-code Dockerfile.compose || (echo Apply and commit the above changes && exit 1)
 
       - name: Build custom triton base image
         shell: bash
