@@ -52,7 +52,7 @@ jobs:
       - name: Build final triton image
         shell: bash
         run: |
-          mkdir server/plugins  # Missing in CI
+          mkdir -p server/plugins  # Missing in CI
           docker build -t tritonserver:$TRITON_CONTAINER_VERSION -f Dockerfile .
 
       - name: List images
